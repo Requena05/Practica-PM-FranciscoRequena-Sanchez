@@ -42,6 +42,23 @@
 
             />
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/reiniciar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Cabereca"
+        app:layout_constraintBottom_toTopOf="@id/cartas"
+        android:gravity="center"
+        android:text="Reiniciar"
+        android:background="#2FDB36"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif"
+        android:textFontWeight="900"
+        android:textSize="25dp"
+        android:visibility="gone"
+        />
     <LinearLayout
         android:id="@+id/vidas"
         android:layout_width="match_parent"
