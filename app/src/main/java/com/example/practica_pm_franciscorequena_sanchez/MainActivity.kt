@@ -76,6 +76,34 @@ class MainActivity : AppCompatActivity() {
             6->{card.animate().rotationY(360F).setDuration(1000).start();card.setImageResource(R.drawable.carta6);card.scaleType=ImageView.ScaleType.FIT_XY}
         }
     }
+    private fun compararcartas(){
+        if(posicion[primera_carta_girada!!]==posicion[segunda_carta_girada!!]){
+            cartasgiradas[primera_carta_girada!!]=true
+            cartasgiradas[segunda_carta_girada!!]=true
+            ganador++
+            primera_carta_girada=null
+            segunda_carta_girada=null
+        }else{
+            lifecycleScope.launch {
+                when(posicion[primera_carta_girada!!]){
+                    1->{flipCardreverse(carta1)}2->{flipCardreverse(carta2)}3->{flipCardreverse(carta3)}
+                    4->{flipCardreverse(carta4)}5->{flipCardreverse(carta5)}6->{flipCardreverse(carta6)}
+                    7->{flipCardreverse(carta7)}8->{flipCardreverse(carta8)}9->{flipCardreverse(carta9)}
+                    10->{flipCardreverse(carta10)}11->{flipCardreverse(carta11)}12->{flipCardreverse(carta12)}
+                }
+                delay(2000)
+                when(posicion[segunda_carta_girada!!]){
+                    1->{flipCardreverse(carta1)}2->{flipCardreverse(carta2)}3->{flipCardreverse(carta3)}
+                    4->{flipCardreverse(carta4)}5->{flipCardreverse(carta5)}6->{flipCardreverse(carta6)}
+                    7->{flipCardreverse(carta7)}8->{flipCardreverse(carta8)}9->{flipCardreverse(carta9)}
+                    10->{flipCardreverse(carta10)}11->{flipCardreverse(carta11)}12->{flipCardreverse(carta12)}
+                }
+            }
+            fallos++
+            primera_carta_girada=null
+            segunda_carta_girada=null
+        }
+    }
     private fun ganar(){
         if(ganador==6){
             Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
@@ -109,39 +137,5 @@ class MainActivity : AppCompatActivity() {
 
            }
        }
-
-
-
-
-
-
-    private fun compararcartas(){
-        if(posicion[primera_carta_girada!!]==posicion[segunda_carta_girada!!]){
-            cartasgiradas[primera_carta_girada!!]=true
-            cartasgiradas[segunda_carta_girada!!]=true
-            ganador++
-            primera_carta_girada=null
-            segunda_carta_girada=null
-        }else{
-            lifecycleScope.launch {
-                when(posicion[primera_carta_girada!!]){
-                    1->{flipCardreverse(carta1)}2->{flipCardreverse(carta2)}3->{flipCardreverse(carta3)}
-                    4->{flipCardreverse(carta4)}5->{flipCardreverse(carta5)}6->{flipCardreverse(carta6)}
-                    7->{flipCardreverse(carta7)}8->{flipCardreverse(carta8)}9->{flipCardreverse(carta9)}
-                    10->{flipCardreverse(carta10)}11->{flipCardreverse(carta11)}12->{flipCardreverse(carta12)}
-                }
-                delay(2000)
-                when(posicion[segunda_carta_girada!!]){
-                    1->{flipCardreverse(carta1)}2->{flipCardreverse(carta2)}3->{flipCardreverse(carta3)}
-                    4->{flipCardreverse(carta4)}5->{flipCardreverse(carta5)}6->{flipCardreverse(carta6)}
-                    7->{flipCardreverse(carta7)}8->{flipCardreverse(carta8)}9->{flipCardreverse(carta9)}
-                    10->{flipCardreverse(carta10)}11->{flipCardreverse(carta11)}12->{flipCardreverse(carta12)}
-                }
-            }
-            fallos++
-            primera_carta_girada=null
-            segunda_carta_girada=null
-        }
-    }
     }
 
