@@ -110,8 +110,6 @@ class MainActivity : AppCompatActivity() {
                primera_carta_girada=null
                segunda_carta_girada=null
            }else{
-//               when()
-
                fallos++
 
                primera_carta_girada=null
