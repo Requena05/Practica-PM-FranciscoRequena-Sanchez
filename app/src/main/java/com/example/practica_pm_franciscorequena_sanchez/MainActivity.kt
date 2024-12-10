@@ -6,10 +6,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import kotlinx.coroutines.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.whenStarted
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -28,8 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var reiniciar: AppCompatButton;private lateinit var vidas:LinearLayout
     private var contenido=0
     private var idcarta=0
-    private var ispareja:Boolean?=false
-    private var vidaextra=0
+
     private val posicion=mutableListOf(1,1,2,2,3,3,4,4,5,5,6,6)
     private var cartasgiradas= mutableListOf(false,false,false,false,false,false,false,false,false,false,false,false)
     private var primera_carta_girada:Int?=null
@@ -56,18 +57,18 @@ class MainActivity : AppCompatActivity() {
 
         //Barajar nuestras cartas
         pareja(posicion)
-        carta1.setOnClickListener{contenido=0;compararpareja();ganar()}
-        carta2.setOnClickListener{contenido=1;compararpareja();ganar()}
-        carta3.setOnClickListener{contenido=2;compararpareja();ganar()}
-        ;carta4.setOnClickListener{contenido=3;compararpareja();ganar()}
-        carta5.setOnClickListener{contenido=4;compararpareja();ganar()}
-        carta6.setOnClickListener{contenido=5;compararpareja();ganar()}
-        carta7.setOnClickListener{contenido=6;compararpareja();ganar()}
-        carta8.setOnClickListener{contenido=7;compararpareja();ganar()}
-        carta9.setOnClickListener{contenido=8;compararpareja();ganar()}
-        carta10.setOnClickListener{contenido=9;compararpareja();ganar()}
-        carta11.setOnClickListener{contenido=10;compararpareja();ganar()}
-        carta12.setOnClickListener{contenido=11;compararpareja();ganar()}
+        carta1.setOnClickListener{contenido=0;compararpareja();}
+        carta2.setOnClickListener{contenido=1;compararpareja();}
+        carta3.setOnClickListener{contenido=2;compararpareja();}
+        ;carta4.setOnClickListener{contenido=3;compararpareja();}
+        carta5.setOnClickListener{contenido=4;compararpareja();}
+        carta6.setOnClickListener{contenido=5;compararpareja();}
+        carta7.setOnClickListener{contenido=6;compararpareja();}
+        carta8.setOnClickListener{contenido=7;compararpareja();}
+        carta9.setOnClickListener{contenido=8;compararpareja();}
+        carta10.setOnClickListener{contenido=9;compararpareja();}
+        carta11.setOnClickListener{contenido=10;compararpareja();}
+        carta12.setOnClickListener{contenido=11;compararpareja();}
 
     }
     override fun onResume() {
@@ -125,19 +126,35 @@ class MainActivity : AppCompatActivity() {
        if(primera_carta_girada!=null && segunda_carta_girada!=null){
            if (primera_carta_girada!! == segunda_carta_girada!!) {
                if(!cartasgiradas[primera_carta_girada!!] && !cartasgiradas[segunda_carta_girada!!]
-                   && cartasgiradas[primera_carta_girada!!]!=cartasgiradas[segunda_carta_girada!!]){
+                   && cartasgiradas[primera_carta_girada!!]!=cartasgiradas[segunda_carta_girada!!])
+                {
                    ganador++
                    cartasgiradas[primera_carta_girada!!] =true
                    cartasgiradas[segunda_carta_girada!!] =true
-                   }
+                }
                primera_carta_girada=null
                segunda_carta_girada=null
+               ganar()
            }else{
 
-               guardarcartas()
-               fallos++
-               primera_carta_girada=null
-               segunda_carta_girada=null
+               lifecycleScope.launch {
+                   when(contenido){
+                       0->flipCard(carta1,posicion[0]);1->flipCard(carta2,posicion[1]);2->flipCard(carta3,posicion[2])
+                       3->flipCard(carta4,posicion[3]);4->flipCard(carta5,posicion[4]);5->flipCard(carta6,posicion[5])
+                       6->flipCard(carta7,posicion[6]);7->flipCard(carta8,posicion[7]);8->flipCard(carta9,posicion[8])
+                       9->flipCard(carta10,posicion[9]);10->flipCard(carta11,posicion[10]);11->flipCard(carta12,posicion[11])
+                   }
+
+                   delay(2000L)
+                   guardarcartas()
+                   fallos++
+
+                   ganar()
+                   primera_carta_girada=null
+                   segunda_carta_girada=null
+               }
+               //aqui las cartas se pueden volver a clickar
+
            }
        }
     }
@@ -162,19 +179,15 @@ private fun guardarcartas(){
             }
         }
         when(fallos){
-
             1->{vidaperdida.visibility=ImageView.VISIBLE;vida1.visibility=ImageView.GONE
             }
             2->{vidaperdida2.visibility=ImageView.VISIBLE;vida2.visibility=ImageView.GONE
             }
             3->{
-                vidaperdida3.visibility=ImageView.VISIBLE;vida3.visibility=ImageView.GONE
                 Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
                 reiniciar.visibility=LinearLayout.VISIBLE
                 vidas.visibility=LinearLayout.GONE
-                reiniciar.setOnClickListener{
-                    recreate()
-                }
+                reiniciar.setOnClickListener{recreate()}
                 flipCardreverse(carta1,posicion[0]);flipCardreverse(carta2,posicion[1]);flipCardreverse(carta3,posicion[2])
                 flipCardreverse(carta4,posicion[3]);flipCardreverse(carta5,posicion[4]);flipCardreverse(carta6,posicion[5])
                 flipCardreverse(carta7,posicion[6]);flipCardreverse(carta8,posicion[7]);flipCardreverse(carta9,posicion[8])

@@ -23,10 +23,10 @@ class SelectorEjerciciosActivity2 : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-//        ejecicio2.setOnClickListener{
-//            val intent = Intent(this, MainActivity2::class.java)
-//            startActivity(intent)
-//        }
+        ejecicio2.setOnClickListener{
+            val intent = Intent(this, CalculatronActivity2::class.java)
+            startActivity(intent)
+        }
 
     }
 }
