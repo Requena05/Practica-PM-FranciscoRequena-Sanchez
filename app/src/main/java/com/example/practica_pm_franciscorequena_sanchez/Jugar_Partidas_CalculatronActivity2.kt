@@ -13,16 +13,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class Jugar_Partidas_CalculatronActivity2 : AppCompatActivity() {
-    private lateinit var botonverpartidas: AppCompatButton
-    private lateinit var botonajustes: AppCompatButton
     private lateinit var cuentatras: TextView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var volver: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jugar_partidas_calculatron2)
-        botonverpartidas = findViewById(R.id.verpartidas)
-        botonajustes = findViewById(R.id.ajustes)
+
         cuentatras = findViewById(R.id.contador)
         volver = findViewById(R.id.volver)
         sharedPreferences = getSharedPreferences("Ajustes", MODE_PRIVATE)

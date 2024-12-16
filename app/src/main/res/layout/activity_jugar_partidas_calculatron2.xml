@@ -69,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
             >
 
             <TextView
@@ -163,7 +164,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/black"
+            android:background="#E8EAF6"
             android:elevation="2dp"
             android:layout_weight="1"
             >
@@ -172,12 +173,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-
+                android:padding="10dp"
                 >
 
                 <TextView
                     android:id="@+id/siete"
-                    android:layout_marginTop="25dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
@@ -187,45 +187,48 @@
                     android:text="7"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/cuatro"
                     app:layout_constraintEnd_toStartOf="@id/ocho"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/cuatro"
-                    android:layout_marginTop="5dp"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="4"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/siete"
-                    app:layout_constraintTop_toBottomOf="@id/siete"
+                    app:layout_constraintBottom_toTopOf="@+id/uno"
                     app:layout_constraintEnd_toEndOf="@id/siete"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/siete"
+                    app:layout_constraintTop_toBottomOf="@+id/siete" />
 
                 <TextView
                     android:id="@+id/uno"
-                    android:layout_marginTop="5dp"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="1"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/siete"
-                    app:layout_constraintTop_toBottomOf="@id/cuatro"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/siete"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/siete"
+                    app:layout_constraintTop_toBottomOf="@+id/cuatro" />
 
                 <TextView
                     android:id="@+id/ocho"
-                    android:layout_marginTop="25dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
@@ -235,47 +238,50 @@
                     android:text="8"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toEndOf="@id/siete"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/cinco"
                     app:layout_constraintEnd_toStartOf="@id/nueve"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/siete"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/cinco"
-                    android:layout_marginTop="5dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="5"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/ocho"
-                    app:layout_constraintTop_toBottomOf="@id/ocho"
+                    app:layout_constraintBottom_toTopOf="@+id/dos"
                     app:layout_constraintEnd_toEndOf="@id/ocho"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/ocho"
+                    app:layout_constraintTop_toBottomOf="@+id/ocho" />
 
                 <TextView
                     android:id="@+id/dos"
-                    android:layout_marginTop="5dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="2"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/ocho"
-                    app:layout_constraintTop_toBottomOf="@id/cinco"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/ocho"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/ocho"
+                    app:layout_constraintTop_toBottomOf="@+id/cinco" />
 
                 <TextView
                     android:id="@+id/nueve"
-                    android:layout_marginTop="25dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
@@ -285,111 +291,118 @@
                     android:text="9"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toEndOf="@id/ocho"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/seis"
                     app:layout_constraintEnd_toStartOf="@id/c"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/ocho"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/seis"
-                    android:layout_marginTop="5dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="6"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/nueve"
-                    app:layout_constraintTop_toBottomOf="@id/nueve"
+                    app:layout_constraintBottom_toTopOf="@+id/tres"
                     app:layout_constraintEnd_toEndOf="@id/nueve"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/nueve"
+                    app:layout_constraintTop_toBottomOf="@+id/nueve" />
+
                 <TextView
                     android:id="@+id/tres"
-                    android:layout_marginTop="5dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="3"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/nueve"
-                    app:layout_constraintTop_toBottomOf="@id/seis"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/nueve"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/nueve"
+                    app:layout_constraintTop_toBottomOf="@+id/seis" />
 
 
                 <TextView
                     android:id="@+id/cero"
-                    android:layout_marginTop="5dp"
                     android:layout_width="50dp"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="0"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/c"
-                    app:layout_constraintTop_toBottomOf="@id/c"
-                    app:layout_constraintEnd_toEndOf="@id/c"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintEnd_toEndOf="@id/c"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/c"
+                    app:layout_constraintTop_toBottomOf="@+id/c" />
+
                 <TextView
                     android:id="@+id/c"
-                    android:layout_marginTop="25dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
+
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="C"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toEndOf="@id/nueve"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/cero"
                     app:layout_constraintEnd_toStartOf="@id/ce"
-                    />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/nueve"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/ce"
-                    android:layout_marginTop="25dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
+
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="CE"
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toEndOf="@id/c"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/igual"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/c"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/igual"
-                    android:layout_marginTop="5dp"
                     android:layout_width="50dp"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
                     android:text="="
                     android:textFontWeight="900"
                     android:textSize="38dp"
-                    app:layout_constraintStart_toStartOf="@id/ce"
-                    app:layout_constraintTop_toBottomOf="@id/ce"
-                    app:layout_constraintEnd_toEndOf="@id/ce"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintEnd_toEndOf="@id/ce"
+                    app:layout_constraintStart_toStartOf="@id/ce"
+                    app:layout_constraintTop_toBottomOf="@id/ce" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
