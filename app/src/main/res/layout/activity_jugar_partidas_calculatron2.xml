@@ -6,9 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Jugar_Partidas_CalculatronActivity2"
-    android:background="#EDE7F6"
+    android:background="#EDE6F6"
     android:padding="15dp"
     >
+    <ImageView
+        android:id="@+id/volver"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cabecera"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:gravity="start"
+        android:elevation="2dp"
+        />
     <TextView
         android:layout_marginTop="50dp"
         android:id="@+id/cabecera"
@@ -16,7 +28,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/volver"
         android:text="Calculatron"
         android:gravity="center"
         android:fontFamily="serif-monospace"
@@ -33,15 +45,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cabecera"
-        app:layout_constraintBottom_toTopOf="@id/botones"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/bordesredondos"
         android:layout_margin="15dp"
         android:elevation="5dp"
         >
         <TextView
+            android:id="@+id/contador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text=" "
             android:layout_gravity="top"
             android:gravity="center"
             android:fontFamily="serif-monospace"
@@ -52,71 +65,337 @@
             android:elevation="2dp"
             android:layout_margin="15dp"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Acertadas: "
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Falladas: "
-            />
-
-
-    </LinearLayout>
-    <ScrollView
-        android:id="@+id/botones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/bordesredondos"
-        android:elevation="2dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/jugar"
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="10dp"
-                android:background="#689F38"
-                android:text="Jugar Partidas"
-                android:textColor="@color/white"
+                android:text="Acertadas:   "
+                android:layout_gravity="start"
+                android:textSize="18dp"
                 android:fontFamily="serif-monospace"
-                android:textFontWeight="900"
-                android:textSize="20dp"
+                android:textFontWeight="800"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="   :Falladas "
+                android:textSize="18dp"
+                android:fontFamily="serif-monospace"
+                android:textFontWeight="800"
+
                 />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/verpartidas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:background="#F9A825"
-                android:text="Ver Partidas"
-                android:textColor="@color/white"
-                android:fontFamily="serif-monospace"
-                android:textFontWeight="900"
-                android:textSize="20dp"
-                android:layout_marginVertical="10dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/ajustes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:background="#C62828"
-                android:text="Ajustes"
-                android:textColor="@color/white"
-                android:fontFamily="serif-monospace"
-                android:textFontWeight="900"
-                android:textSize="20dp"
-                android:layout_marginVertical="10dp"/>
         </LinearLayout>
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/cuenta_anterior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:fontFamily="serif-monospace"
+                android:textSize="28dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textFontWeight="900"
+                android:textColor="@color/black"
+                />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/cuenta_actual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="2"
+                android:fontFamily="serif-monospace"
+                android:textSize="38dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textFontWeight="900"
+                android:textColor="@color/black"
+                />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/cuenta_siguiente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="3"
+                android:layout_weight="1"
+                android:fontFamily="serif-monospace"
+                android:textSize="28dp"
+                android:gravity="center"
+                android:textFontWeight="900"
+                android:textColor="@color/black"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/black"
+            android:elevation="2dp"
+            android:layout_weight="1"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+
+                >
+
+                <TextView
+                    android:id="@+id/siete"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="7"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ocho"
+                    />
+                <TextView
+                    android:id="@+id/cuatro"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/siete"
+                    app:layout_constraintTop_toBottomOf="@id/siete"
+                    app:layout_constraintEnd_toEndOf="@id/siete"
+                    />
+
+                <TextView
+                    android:id="@+id/uno"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/siete"
+                    app:layout_constraintTop_toBottomOf="@id/cuatro"
+                    app:layout_constraintEnd_toEndOf="@id/siete"
+                    />
+
+                <TextView
+                    android:id="@+id/ocho"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toEndOf="@id/siete"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/nueve"
+                    />
+                <TextView
+                    android:id="@+id/cinco"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/ocho"
+                    app:layout_constraintTop_toBottomOf="@id/ocho"
+                    app:layout_constraintEnd_toEndOf="@id/ocho"
+                    />
+
+                <TextView
+                    android:id="@+id/dos"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/ocho"
+                    app:layout_constraintTop_toBottomOf="@id/cinco"
+                    app:layout_constraintEnd_toEndOf="@id/ocho"
+                    />
+
+                <TextView
+                    android:id="@+id/nueve"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="9"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toEndOf="@id/ocho"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/c"
+                    />
+                <TextView
+                    android:id="@+id/seis"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/nueve"
+                    app:layout_constraintTop_toBottomOf="@id/nueve"
+                    app:layout_constraintEnd_toEndOf="@id/nueve"
+                    />
+                <TextView
+                    android:id="@+id/tres"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/nueve"
+                    app:layout_constraintTop_toBottomOf="@id/seis"
+                    app:layout_constraintEnd_toEndOf="@id/nueve"
+                    />
+
+
+                <TextView
+                    android:id="@+id/cero"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/c"
+                    app:layout_constraintTop_toBottomOf="@id/c"
+                    app:layout_constraintEnd_toEndOf="@id/c"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+                <TextView
+                    android:id="@+id/c"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="C"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toEndOf="@id/nueve"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ce"
+                    />
+                <TextView
+                    android:id="@+id/ce"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="CE"
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toEndOf="@id/c"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/igual"
+                    />
+                <TextView
+                    android:id="@+id/igual"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/teclas"
+                    android:fontFamily="serif-monospace"
+                    android:gravity="center"
+                    android:text="="
+                    android:textFontWeight="900"
+                    android:textSize="38dp"
+                    app:layout_constraintStart_toStartOf="@id/ce"
+                    app:layout_constraintTop_toBottomOf="@id/ce"
+                    app:layout_constraintEnd_toEndOf="@id/ce"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
