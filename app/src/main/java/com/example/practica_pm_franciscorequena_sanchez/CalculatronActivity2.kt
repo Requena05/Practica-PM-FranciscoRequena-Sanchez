@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 class CalculatronActivity2 : AppCompatActivity() {
     private lateinit var botonjugar: AppCompatButton
     private lateinit var botonverpartidas:AppCompatButton
+
     private lateinit var botonajustes:AppCompatButton
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var volver: ImageView

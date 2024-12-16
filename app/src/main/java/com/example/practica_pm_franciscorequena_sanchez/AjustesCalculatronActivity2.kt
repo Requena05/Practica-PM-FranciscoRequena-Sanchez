@@ -41,11 +41,35 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
             val sharedPreferences = getSharedPreferences("Ajustes", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("animacion", animaciones.selectedItem.toString())
-            editor.putBoolean("suma", suma.isChecked)
-            editor.putBoolean("resta", resta.isChecked)
-            editor.putBoolean("multiplicacion", multiplicacion.isChecked)
-            editor.putString("maximo", maximo.text.toString())
-            editor.putString("minimo", minimo.text.toString())
+            if(maximo.text.toString()==""){
+                editor.putInt("maximo",10)
+            }else{
+                editor.putInt("maximo",maximo.text.toString().toInt())
+            }
+            if(minimo.text.toString()==""){
+                editor.putInt("minimo",1)
+            }else{
+                editor.putInt("minimo",minimo.text.toString().toInt())
+            }
+            if(cuentaatras.text.toString()==""){
+                editor.putInt("cuentaatras",21)
+            }else{
+                editor.putInt("cuentaatras",cuentaatras.text.toString().toInt())
+            }
+            if (!suma.isChecked && !resta.isChecked && !multiplicacion.isChecked) {
+                editor.putString("operaciones", "+")
+                editor.putString("operaciones", "-")
+            }
+            if (suma.isChecked) {
+                editor.putString("operaciones", "+")
+            }
+            if (resta.isChecked) {
+                editor.putString("operaciones", "-")
+            }
+            if (multiplicacion.isChecked) {
+                editor.putString("operaciones", "*")
+            }
+
             editor.putString("cuentaatras", cuentaatras.text.toString())
             editor.apply()
             finish()

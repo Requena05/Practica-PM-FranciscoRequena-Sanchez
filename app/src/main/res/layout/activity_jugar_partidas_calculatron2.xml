@@ -73,9 +73,10 @@
             >
 
             <TextView
+                android:id="@+id/aciertos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Acertadas:   "
+                android:text="Acertadas:0  "
                 android:layout_gravity="start"
                 android:textSize="18dp"
                 android:fontFamily="serif-monospace"
@@ -87,10 +88,11 @@
                 android:layout_weight="1"
                 />
             <TextView
+                android:id="@+id/fallidos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="   :Falladas "
+                android:text="   0:Falladas "
                 android:textSize="18dp"
                 android:fontFamily="serif-monospace"
                 android:textFontWeight="800"
@@ -109,14 +111,14 @@
                 android:id="@+id/cuenta_anterior"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1"
-                android:fontFamily="serif-monospace"
-                android:textSize="28dp"
-                android:gravity="center"
                 android:layout_weight="1"
-                android:textFontWeight="900"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text=""
                 android:textColor="@color/black"
-                />
+                android:textFontWeight="900"
+                android:textSize="28dp" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="2"
+                android:text=""
                 android:fontFamily="serif-monospace"
                 android:textSize="38dp"
                 android:layout_weight="1"
@@ -145,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="3"
+                android:text=""
                 android:layout_weight="1"
                 android:fontFamily="serif-monospace"
                 android:textSize="28dp"
@@ -167,13 +169,17 @@
             android:background="#E8EAF6"
             android:elevation="2dp"
             android:layout_weight="1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="10dp"
+
             >
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
+
                 >
 
                 <TextView
@@ -231,7 +237,6 @@
                     android:id="@+id/ocho"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginHorizontal="10dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
                     android:gravity="center"
@@ -240,7 +245,7 @@
                     android:textSize="38dp"
                     app:layout_constraintBottom_toTopOf="@+id/cinco"
                     app:layout_constraintEnd_toStartOf="@id/nueve"
-                    app:layout_constraintHorizontal_bias="0.5"
+
                     app:layout_constraintStart_toEndOf="@id/siete"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -248,7 +253,6 @@
                     android:id="@+id/cinco"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
@@ -266,7 +270,6 @@
                     android:id="@+id/dos"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/teclas"
                     android:fontFamily="serif-monospace"
