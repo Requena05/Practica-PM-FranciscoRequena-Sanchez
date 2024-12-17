@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -55,100 +56,77 @@ class Jugar_Partidas_CalculatronActivity2 : AppCompatActivity() {
         siete=findViewById(R.id.siete);ocho=findViewById(R.id.ocho);nueve=findViewById(R.id.nueve)
         aciertos=findViewById(R.id.aciertos);fallidos=findViewById(R.id.fallidos)
 
-
-        var operaciones = listOf("+", "-", "*")
-
         sharedPreferences = getSharedPreferences("Ajustes", MODE_PRIVATE)
+        var operaciones = sharedPreferences.getString("operaciones","")!!.split("|")
         cuentatras.text = sharedPreferences.getString("cuentaatras", "21")
         random= Random.nextInt(sharedPreferences.getInt("minimo",1),sharedPreferences.getInt("maximo",10))
         random2= Random.nextInt(sharedPreferences.getInt("minimo",1),sharedPreferences.getInt("maximo",10))
-        cuenta_actual.text = String.format(random.toString()+sharedPreferences.getString("operaciones",operaciones.random())+random2.toString()+"=")
-         resultado =random+random2
+
+        Log.d("operaciones",sharedPreferences.getString("operaciones","").toString())
+        if(random2>random) cuenta_actual.text = String.format(random2.toString()+operaciones.random()+random.toString()+"=")
+        else cuenta_actual.text = String.format(random.toString()+operaciones.random()+random2.toString()+"=")
+        cuenta = cuenta_actual.text.toString()
+
+        resultado =random+random2
         random= Random.nextInt(sharedPreferences.getInt("minimo",1),sharedPreferences.getInt("maximo",10))
         random2= Random.nextInt(sharedPreferences.getInt("minimo",1),sharedPreferences.getInt("maximo",10))
+        if(random2>random) cuenta_siguiente.text = String.format(random2.toString()+operaciones.random()+random.toString()+"=")
+        else cuenta_siguiente.text = String.format(random.toString()+operaciones.random()+random2.toString()+"=")
 
-        cuenta_siguiente.text = String.format(random.toString()+sharedPreferences.getString("operaciones",operaciones.random())+random2.toString()+"=")
-        cuenta=cuenta_actual.text.toString()
 
-        volver.setOnClickListener {
-            finish()
-        }
+
         if (cuentatras.text == "") {
             cuentatras.text = String.format("21")
         }
         //con las shared preferences genero una cuenta con el maximo el minimo y la operacion random que haya elegido el usuario en configuracion
-        uno.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"1")
-        }
-        dos.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"2")
-        }
-        tres.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"3")
-        }
-        cuatro.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"4")
-        }
-        cinco.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"5")
-            }
-        seis.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"6")
-        }
-        siete.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"7")
-        }
-        ocho.setOnClickListener {
-            cuenta_actual.text =String.format(cuenta_actual.text.toString()+"8")
-        }
-        nueve.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"9")
-        }
-        cero.setOnClickListener {
-            cuenta_actual.text = String.format(cuenta_actual.text.toString()+"0")}
-
-        C.setOnClickListener {
-            cuenta_actual.text =cuenta_actual.text.toString().dropLast(1)
-        }
-        CE.setOnClickListener {
-            cuenta_actual.text = cuenta_siguiente.text.toString()
-        }
-
+        uno.setOnClickListener {cuenta_actual.text = String.format(cuenta_actual.text.toString()+"1") }
+        dos.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"2") }
+        tres.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"3") }
+        cuatro.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"4") }
+        cinco.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"5") }
+        seis.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"6") }
+        siete.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"7") }
+        ocho.setOnClickListener { cuenta_actual.text =String.format(cuenta_actual.text.toString()+"8") }
+        nueve.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"9") }
+        cero.setOnClickListener { cuenta_actual.text = String.format(cuenta_actual.text.toString()+"0")}
+        C.setOnClickListener { cuenta_actual.text =cuenta_actual.text.toString().dropLast(1) }
+        CE.setOnClickListener { cuenta_actual.text = cuenta_siguiente.text.toString() }
         igual.setOnClickListener {
-            var cuentaresuelta=cuenta+resultado.toString()
-            if (cuentaresuelta==cuenta_actual.text.toString()){
-                //tiene que sumar los aciertos
-                acierto++
-                aciertos.text=" Aciertos:$acierto"
 
-            }else
-            //tiene que sumar los fallos
+            cuenta=cuenta_actual.text.toString()
+            Log.d("cuenta",cuenta)
+            cuenta=cuenta.substringBefore("=")
+            //sacamos el array de 3 elementos con la cuenta
+            var numeros=cuenta.split("+","-","*")
+
+            Log.d("cuenta",cuenta)
+            if(cuenta.contains("+")) resultado=numeros[0].toInt()+numeros[1].toInt()
+            if(cuenta.contains("-")) resultado=numeros[0].toInt()-numeros[1].toInt()
+            if(cuenta.contains("*")) resultado=numeros[0].toInt()*numeros[1].toInt()
+            if(cuenta_actual.text.toString().substringAfter("=")==""){
                 fallos++
-            fallidos.text="$fallos :Falladas"
+                fallidos.text=String.format("$fallos :Falladas")
+            }else if(resultado==cuenta_actual.text.toString().substringAfter("=").toInt()){
+                        acierto++
+                        aciertos.text=String.format("Aciertos: $acierto")
+            }else{
+                    fallos++
+                    fallidos.text=String.format("$fallos :Falladas")
+            }
+
 
             cuenta_anterior.text = cuenta_actual.text.toString()
             cuenta_actual.text=cuenta_siguiente.text.toString()
             random= Random.nextInt(sharedPreferences.getInt("minimo",1),sharedPreferences.getInt("maximo",10))
             random2= Random.nextInt(sharedPreferences.getInt("minimo",1),sharedPreferences.getInt("maximo",10))
-            cuenta_siguiente.text = String.format(random.toString()+sharedPreferences.getString("operaciones",operaciones.random())+random2.toString()+"=")
-
-
-
+            if(random2>random) cuenta_siguiente.text = String.format(random2.toString()+operaciones.random()+random.toString()+"=")
+            else cuenta_siguiente.text = String.format(random.toString()+operaciones.random()+random2.toString()+"=")
+            cuenta=cuenta_siguiente.text.toString()
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        volver.setOnClickListener {
+            finish()
+        }
         //Cuenta atras
             var contador: Long = cuentatras.text.toString().toLong()
             var cuentaatras = object : CountDownTimer(contador * 1000, 1000) {
