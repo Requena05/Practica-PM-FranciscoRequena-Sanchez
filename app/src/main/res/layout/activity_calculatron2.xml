@@ -85,12 +85,12 @@
                 />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/verpartidas"
+                android:id="@+id/estadisticas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:background="#F9A825"
-                android:text="Ver Partidas"
+                android:text="Ver Estadisticas"
                 android:textColor="@color/white"
                 android:fontFamily="serif-monospace"
                 android:textFontWeight="900"

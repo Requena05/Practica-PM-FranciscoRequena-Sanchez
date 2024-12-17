@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class CalculatronActivity2 : AppCompatActivity() {
     private lateinit var botonjugar: AppCompatButton
-    private lateinit var botonverpartidas:AppCompatButton
+    private lateinit var botonverestadisticas:AppCompatButton
 
     private lateinit var botonajustes:AppCompatButton
     private lateinit var sharedPreferences: SharedPreferences
@@ -26,7 +26,7 @@ class CalculatronActivity2 : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("Ajustes", MODE_PRIVATE)
         botonjugar = findViewById(R.id.jugar)
-        botonverpartidas = findViewById(R.id.verpartidas)
+        botonverestadisticas = findViewById(R.id.estadisticas)
         botonajustes = findViewById(R.id.ajustes)
         volver = findViewById(R.id.volver)
         volver.setOnClickListener {
@@ -34,7 +34,10 @@ class CalculatronActivity2 : AppCompatActivity() {
         }
         //guardo un 1 en la shared prefrence "uno"
 
-        botonverpartidas.setOnClickListener {
+        botonverestadisticas.setOnClickListener {
+            val intent = Intent(this, EstadisticasCalculatronActivity2::class.java)
+            startActivity(intent)
+
         }
         botonajustes.setOnClickListener {
             val intent = Intent(this, AjustesCalculatronActivity2::class.java)

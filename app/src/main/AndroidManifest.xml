@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PracticaPMFranciscoRequenaSanchez"
         tools:targetApi="31">
         <activity
+            android:name=".EstadisticasCalculatronActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Jugar_Partidas_CalculatronActivity2"
             android:exported="false" />
         <activity

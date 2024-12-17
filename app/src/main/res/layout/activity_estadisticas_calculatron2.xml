@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EstadisticasCalculatronActivity2"
+    android:padding="15dp"
+    android:background="#E3F2FD"
+    >
+    <ImageView
+        android:id="@+id/volver"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cabecera"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:gravity="start"
+
+        android:elevation="2dp"
+        />
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/volver"
+        android:text="Estadísticas"
+        android:gravity="center"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/black"
+        android:textFontWeight="900"
+        android:textSize="50dp"
+        android:background="@drawable/bordesredondos"
+        android:elevation="2dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/bordesredondos"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cabecera"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lista_estadisticas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/listarestadisticas">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

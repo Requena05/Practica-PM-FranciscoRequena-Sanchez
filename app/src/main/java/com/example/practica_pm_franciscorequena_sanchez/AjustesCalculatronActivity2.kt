@@ -38,7 +38,6 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
         cuentaatras = findViewById(R.id.cuentaatras)
         guardar = findViewById(R.id.guardar)
 
-        //recorremos las operaciones y seteamos los checkbox que sean
 
         for(op in operaciones){
             if(op == "-")resta.isChecked=true
@@ -51,7 +50,6 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
         val animacion= arrayOf("Ninguna","Animacion1","Animacion2","Animacion3")
         animaciones.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,animacion)
         guardar.setOnClickListener {
-
             val editor = sharedPreferences.edit()
             editor.putString("animacion", animaciones.selectedItem.toString())
             if(maximo.text.toString()==""){
@@ -64,6 +62,10 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
                 editor.putInt("minimo",1)
             }else{
                 editor.putInt("minimo",minimo.text.toString().toInt())
+                if (minimo.text.toString().toInt()>maximo.text.toString().toInt()) {
+                    minimo.error = "El minimo no puede ser mayor que el maximo"
+                    return@setOnClickListener
+                }
             }
 
             if(cuentaatras.text.toString()==""){
@@ -73,7 +75,7 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
             }
 
             if (!suma.isChecked && !resta.isChecked && !multiplicacion.isChecked) {
-                editor.putString("operaciones", "+|-")
+                editor.putString("operaciones", "+|-").apply()
             }
             if (suma.isChecked) {
                // editor.putString("operaciones", sharedPreferences.getString("operaciones", "") + (if (sharedPreferences.getString("operaciones", "") == "") "+" else  "|+"))

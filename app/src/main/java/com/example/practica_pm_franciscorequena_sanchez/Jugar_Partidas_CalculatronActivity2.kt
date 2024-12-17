@@ -42,10 +42,12 @@ class Jugar_Partidas_CalculatronActivity2 : AppCompatActivity() {
     private var acierto = 0
     private var fallos = 0
     private var resultado = 0
+    private var nºpartidas = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jugar_partidas_calculatron2)
+        val sP = getSharedPreferences("Estadisticas", MODE_PRIVATE)
 
         cuenta_actual = findViewById(R.id.cuenta_actual);cuenta_anterior = findViewById(R.id.cuenta_anterior)
         cuenta_siguiente = findViewById(R.id.cuenta_siguiente);
@@ -92,7 +94,6 @@ class Jugar_Partidas_CalculatronActivity2 : AppCompatActivity() {
         C.setOnClickListener { cuenta_actual.text =cuenta_actual.text.toString().dropLast(1) }
         CE.setOnClickListener { cuenta_actual.text = cuenta_siguiente.text.toString() }
         igual.setOnClickListener {
-
             cuenta=cuenta_actual.text.toString()
             Log.d("cuenta",cuenta)
             cuenta=cuenta.substringBefore("=")
@@ -109,9 +110,11 @@ class Jugar_Partidas_CalculatronActivity2 : AppCompatActivity() {
             }else if(resultado==cuenta_actual.text.toString().substringAfter("=").toInt()){
                         acierto++
                         aciertos.text=String.format("Aciertos: $acierto")
+                    sP.edit().putInt("Aciertos",acierto).apply()
             }else{
                     fallos++
                     fallidos.text=String.format("$fallos :Falladas")
+                    sP.edit().putInt("Fallos",fallos).apply()
             }
 
 
@@ -139,6 +142,8 @@ class Jugar_Partidas_CalculatronActivity2 : AppCompatActivity() {
                         dos.setOnClickListener(null);cinco.setOnClickListener(null);seis.setOnClickListener(null)
                         siete.setOnClickListener(null);ocho.setOnClickListener(null);nueve.setOnClickListener(null)
                         cero.setOnClickListener(null);igual.setOnClickListener(null);C.setOnClickListener(null);CE.setOnClickListener(null)
+                    nºpartidas++
+                    sP.edit().putInt("num_partidas",nºpartidas).apply()
                 }
             }
             cuentaatras.start()
