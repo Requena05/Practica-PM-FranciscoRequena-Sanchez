@@ -18,6 +18,7 @@ class CalculatronActivity2 : AppCompatActivity() {
 
     private lateinit var botonajustes:AppCompatButton
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sp: SharedPreferences
     private lateinit var volver: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +26,17 @@ class CalculatronActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_calculatron2)
 
         sharedPreferences = getSharedPreferences("Ajustes", MODE_PRIVATE)
+        var operaciones = sharedPreferences.getString("operaciones","")!!.split("|")
+        if(operaciones.contains("")) {
+            sharedPreferences.edit().putString("operaciones","+|-")!!.apply()
+        }
         botonjugar = findViewById(R.id.jugar)
         botonverestadisticas = findViewById(R.id.estadisticas)
         botonajustes = findViewById(R.id.ajustes)
         volver = findViewById(R.id.volver)
         volver.setOnClickListener {
-            finish()
+            val intent = Intent(this, SelectorEjerciciosActivity2::class.java)
+            startActivity(intent)
         }
         //guardo un 1 en la shared prefrence "uno"
 

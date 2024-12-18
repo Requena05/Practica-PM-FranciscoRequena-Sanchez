@@ -1,10 +1,12 @@
 package com.example.practica_pm_franciscorequena_sanchez
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -47,11 +49,25 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
         //limpiamos sp operaciones
         sharedPreferences.edit().putString("operaciones","").apply()
 
-        val animacion= arrayOf("Ninguna","Animacion1","Animacion2","Animacion3")
+        val animacion= arrayOf("Ninguna","Movimiento","Estirar cuenta")
         animaciones.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,animacion)
+
+        //Por cada opcion del spinner hacemos una animación diferente en la cuenta atras
+
+
+
+
+
         guardar.setOnClickListener {
             val editor = sharedPreferences.edit()
             editor.putString("animacion", animaciones.selectedItem.toString())
+            //el maximo y el minimo no puede tener mas de dos digitos
+            if(maximo.text.toString().length>2 || minimo.text.toString().length>2) {
+                maximo.error = "El maximo no puede tener mas de dos digitos"
+                minimo.error = "El minimo no puede tener mas de dos digitos"
+                return@setOnClickListener
+            }
+
             if(maximo.text.toString()==""){
                 editor.putInt("maximo",10)
             }else{
@@ -66,12 +82,29 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
                     minimo.error = "El minimo no puede ser mayor que el maximo"
                     return@setOnClickListener
                 }
+                if (minimo.text.toString().toInt()==maximo.text.toString().toInt()) {
+                    minimo.error = "El minimo no puede ser igual que el maximo"
+                    return@setOnClickListener
+                }
+                if (minimo.text.toString().toInt()==0 && maximo.text.toString().toInt()==0) {
+                    minimo.error = "El minimo no puede ser menor que 1"
+                    maximo.error = "El maximo no puede ser 0"
+                    return@setOnClickListener
+                }
+
+
             }
 
             if(cuentaatras.text.toString()==""){
                 editor.putInt("cuentaatras",21)
             }else{
-                editor.putInt("cuentaatras",cuentaatras.text.toString().toInt())
+                if (cuentaatras.text.toString().toInt()>1 && cuentaatras.text.toString().toInt()<=999) {
+                    editor.putInt("cuentaatras",cuentaatras.text.toString().toInt())
+                }else{
+                    Toast.makeText(this, "El numero de cuenta atras debe estar entre 1 y 999", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
             }
 
             if (!suma.isChecked && !resta.isChecked && !multiplicacion.isChecked) {
@@ -94,7 +127,10 @@ class AjustesCalculatronActivity2 : AppCompatActivity() {
 
             editor.putString("cuentaatras", cuentaatras.text.toString())
             editor.apply()
+            val intent = Intent(this, Jugar_Partidas_CalculatronActivity2::class.java)
+            startActivity(intent)
             finish()
+
 
 
         }
